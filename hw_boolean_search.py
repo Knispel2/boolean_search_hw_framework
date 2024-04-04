@@ -65,7 +65,7 @@ class my_set:
 class Index:
     def __init__(self, docfile) -> None:
         with codecs.open(docfile, mode='r', encoding='utf-8') as docs:
-            self._index = defaultdict(set)
+            self._index = defaultdict(my_set)
             for index, item in enumerate(docs):
                 base = item.strip('\n').strip().split('\t')[1:]
                 for fragment in base:
@@ -125,7 +125,7 @@ class QueryProcessor:
         """
         stack = []
         for token in parsed_formula:
-            if type(token) is set:
+            if type(token) is my_set:
                 yield token
                 continue
             if token in QueryProcessor.OPERATORS:
@@ -147,7 +147,7 @@ class QueryProcessor:
     def _calc(self, polish):
         stack = []
         for token in polish:
-            if type(token) is set:
+            if type(token) is my_set:
                 stack.append(token)
                 continue
             if token in QueryProcessor.OPERATORS:
