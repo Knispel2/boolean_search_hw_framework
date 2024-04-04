@@ -58,7 +58,6 @@ class my_set:
         return my_set(result)
 
     def __contains__(self, item):
-        # TODO: вставить сюда бинарный поиск
         return item in self.base
 
 
